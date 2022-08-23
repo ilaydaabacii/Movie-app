@@ -1,0 +1,115 @@
+<!-- <div *ngFor="let item of movies">
+    <movie></movie>
+</div> -->
+
+<!-- <div>
+    <h1> {{title}} </h1>
+</div>
+
+<ul>
+    <li *ngFor="let item of movies">
+        {{item.title}}
+    </li>
+</ul> -->
+<h1>{{title}}</h1>
+<!-- <div class="alert alert-warning" *ngIf="movies.length == 15">
+    {{movies.length}} film bulundu.
+</div> -->
+<!-- <div [ngSwitch]="movies.length">
+    <div *ngSwitchCase="0" class="alert alert-danger">Film bulunamadı.</div>
+    <div *ngSwitchDefault class="alert alert-success">{{movies.length}} film bulundu.</div>
+</div> -->
+<!-- <div class="alert " [ngClass]="{'alert-success': movies.length > 0, 'alert-danger': movies.length == 0}">
+    {{movies.length}} 
+</div> -->
+<div *ngIf="movies.length > 0;else templateName">
+    <div class="alert alert-success">{{filterMovies.length}} film bulundu.</div>
+    <div class="mb-3">
+        <input type="text" name="" id="" class="form-control" placeholder="Arama Yapınız..." [(ngModel)]="filterText"
+            (ngModelChange)="onInputChange()">
+        <span class="text-muted" *ngIf="filterText"> Aradığınız kelime : {{filterText}}</span>
+    </div>
+    <!-- <ng-template [ngTemplateOutlet]="movieList"></ng-template> -->
+    <!-- <ng-template [ngTemplateOutlet]="movieList2" [ngTemplateOutletContext]="{teachCareer: popularMovies}">
+    </ng-template> -->
+</div>
+<ng-template #templateName>
+    <div class="alert alert-danger">Film bulunamadı.</div>
+</ng-template>
+<!-- <div class="col-6" *ngFor="let item of movies | movieFilter : filterText"> -->
+<div class="row">
+    <div class="col-6" *ngFor="let item of filterMovies">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="/assets/img/{{item.imageUrl}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.title}}</h5>
+                        <p class="card-text">{{item.description | summary}}</p>
+                        <p class="card-text"><small class="text-muted">{{item.datePublished | date}}</small></p>
+                        <div>
+                            <button class="btn btn-sm btn-outline-success me-2">Detaylar</button>
+                            <button class="btn btn-sm btn-success" (click)="addToList($event, item)">Listeye
+                                Ekle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container text-center">
+    <div class="row">
+        <div class="col-3" *ngFor="let item of toastrNames">
+            <div id="{{item.cardId}}" class="card">
+                <div class="card-body">
+                    <h3 class="card-text"> {{item.name}} </h3>
+                    <button id="{{item.buttonId}}" 
+                            class="btn btn-success mt-5" 
+                            type="button"
+                            (click)="showToastr(item.name)"> {{item.buttonDesc}} </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <ng-template #movieList>
+    <div class="row">
+        <div class="col-6" *ngFor="let item of movies">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="/assets/img/{{item.imageUrl}}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.title}}</h5>
+                            <p class="card-text">{{item.description}}</p>
+                            <p class="card-text"><small class="text-muted">{{item.datePuslished}}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template> -->
+
+<!-- <ng-template #movieList2 let-ders6="teachCareer">
+    <h2>Popular Movies</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
+        <div class="col" *ngFor="let item of ders6">
+            <div class="card h-100">
+                <img src="/assets/img/{{ item.imageUrl }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.description | summary}}</p>
+                    <p class="card-text">{{ item.datePublished }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template> -->

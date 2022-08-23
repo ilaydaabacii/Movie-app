@@ -1,0 +1,16 @@
+<div class="list-group">
+
+    <a href="#" 
+       class="list-group-item  list-group-item-action"
+       (click)="selectCategory()"
+       [class.active]="displayAll">
+       Tüm Kategoriler
+    </a>
+    <a *ngFor="let category of categories"
+       href="#" 
+       class="list-group-item  list-group-item-action" 
+       [ngClass]="{'active': !displayAll && selectedCategory.id == category.id}" 
+       (click)="selectCategory(category)">
+       {{category.name}}
+    </a>
+</div>
